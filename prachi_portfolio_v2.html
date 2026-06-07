@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prachi Nanjannavar  Roblox Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --red: #ff3c3c;
+    --red-dim: rgba(255,60,60,0.12);
+    --red-glow: rgba(255,60,60,0.25);
+    --green: #00e87a;
+    --text: #f0ede6;
+    --muted: #8a8590;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-display); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,15,0.9); backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-family: var(--font-mono); font-size: 13px; color: var(--red); letter-spacing: 0.05em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 2.5rem 4rem; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -10%; right: -15%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, var(--red-glow) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: -10%;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,232,122,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-family: var(--font-mono); font-size: 12px; color: var(--red);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--red); }
+  .hero-name { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+  .hero-name span { color: var(--red); }
+  .hero-title { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 500; color: var(--muted); margin-bottom: 2rem; }
+  .hero-desc { max-width: 560px; font-size: 1rem; color: var(--muted); line-height: 1.75; margin-bottom: 2.5rem; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.75rem; background: var(--red); color: #fff;
+    font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.05em; border: none; cursor: pointer; text-decoration: none;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.75rem; background: transparent; color: var(--text);
+    font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.05em; border: 1px solid var(--border2); cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.1s;
+  }
+  .btn-outline:hover { border-color: var(--red); color: var(--red); transform: translateY(-1px); }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .stat-num { font-size: 2rem; font-weight: 800; line-height: 1; margin-bottom: 0.25rem; }
+  .stat-num .accent { color: var(--red); }
+  .stat-label { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3rem; }
+  .section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* PROJECT */
+  .project-card { border: 1px solid var(--border); background: var(--surface); margin-bottom: 1.5rem; overflow: hidden; transition: border-color 0.2s; }
+  .project-card:hover { border-color: var(--border2); }
+  .project-header {
+    padding: 2rem 2.5rem 1.5rem; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;
+  }
+  .project-badge { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.75rem; background: var(--red-dim); color: var(--red); border: 1px solid rgba(255,60,60,0.3); flex-shrink: 0; }
+  .project-year { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+  .project-name { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .project-sub { font-size: 0.875rem; color: var(--muted); font-family: var(--font-mono); }
+  .project-body { padding: 1.5rem 2.5rem 2rem; }
+
+  /* SCREENSHOT GALLERY */
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .gallery-item {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+  }
+  .gallery-item.wide { grid-column: 1 / -1; aspect-ratio: 21/9; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 0.5rem 0.75rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.7);
+  }
+
+  /* THUMBNAIL ROW */
+  .thumb-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .thumb-item {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--surface2);
+    position: relative;
+  }
+  .thumb-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+  .thumb-item:hover img { transform: scale(1.06); }
+  .thumb-label {
+    position: absolute; top: 0.5rem; left: 0.5rem;
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.5rem; background: var(--red-dim); color: var(--red); border: 1px solid rgba(255,60,60,0.3);
+  }
+
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .feature-item { background: var(--surface2); border: 1px solid var(--border); padding: 1rem 1.25rem; }
+  .feature-icon { font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .feature-title { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+  .feature-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tech-tag { font-family: var(--font-mono); font-size: 11px; padding: 0.3rem 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.05em; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .skill-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.2s; }
+  .skill-card:hover { border-color: var(--border2); }
+  .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-category { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem; }
+  .skill-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .skill-list li { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+  .skill-list li::before { content: ''; display: inline-block; width: 4px; height: 4px; background: var(--red); flex-shrink: 0; }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .exp-card { background: var(--surface); border: 1px solid var(--border); padding: 1.75rem 2rem; display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; transition: border-color 0.2s; }
+  .exp-card:hover { border-color: var(--border2); }
+  .exp-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red); margin-top: 0.4rem; flex-shrink: 0; }
+  .exp-role { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .exp-company { font-family: var(--font-mono); font-size: 12px; color: var(--red); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+  .exp-company .period { color: var(--muted); }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .exp-bullets li { font-size: 0.85rem; color: var(--muted); padding-left: 1rem; position: relative; line-height: 1.6; }
+  .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-size: 0.75rem; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .contact-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; transition: border-color 0.2s; text-decoration: none; cursor: pointer; }
+  .contact-card:hover { border-color: var(--red); }
+  .contact-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--red); text-transform: uppercase; }
+  .contact-value { font-size: 0.9rem; color: var(--text); word-break: break-all; }
+  .contact-arrow { font-size: 1.25rem; color: var(--muted); margin-top: auto; align-self: flex-end; }
+
+  footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-tag, .hero-name, .hero-title, .hero-desc, .hero-ctas, .hero-stats { animation: fadeInUp 0.6s both; }
+  .hero-tag { animation-delay: 0.1s; }
+  .hero-name { animation-delay: 0.2s; }
+  .hero-title { animation-delay: 0.3s; }
+  .hero-desc { animation-delay: 0.4s; }
+  .hero-ctas { animation-delay: 0.5s; }
+  .hero-stats { animation-delay: 0.6s; }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .hero { padding: 7rem 1.25rem 4rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .project-header { flex-direction: column; }
+    .contact-grid { grid-column: 1fr; }
+    .gallery { grid-template-columns: 1fr; }
+    .gallery-item.wide { aspect-ratio: 16/9; }
+    .thumb-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">PRACHI.DEV</div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div style="max-width:1100px; margin: 0 auto; width: 100%;">
+    <div class="hero-tag">Roblox Game Developer · Luau · Multiplayer Systems</div>
+    <h1 class="hero-name">PRACHI<br><span>NANJANNAVAR</span></h1>
+    <p class="hero-title">Building worlds, one script at a time.</p>
+    <p class="hero-desc">End-to-end Roblox developer with hands-on experience in scalable Luau systems, client-server architecture, responsive UI, and live game deployment. I build games that players actually want to play.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#projects">View Projects ↓</a>
+      <a class="btn-outline" href="#contact">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">1<span class="accent">+</span></div>
+        <div class="stat-label">Published Game</div>
+      </div>
+      <div>
+        <div class="stat-num">7<span class="accent">v7</span></div>
+        <div class="stat-label">Multiplayer</div>
+      </div>
+      <div>
+        <div class="stat-num">25<span class="accent">+</span></div>
+        <div class="stat-label">Unique Rooms</div>
+      </div>
+      <div>
+        <div class="stat-num">5<span class="accent">★</span></div>
+        <div class="stat-label">Roblox Stack</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<section id="projects">
+  <div class="section-label">/ 01 projects</div>
+  <h2 class="section-title">What I've Built</h2>
+
+  <div class="project-card">
+    <div class="project-header">
+      <div>
+        <div class="project-name">Zombie Escape</div>
+        <div class="project-sub">Luau · Roblox Studio · Multiplayer Prop-Hunt Survival</div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem;">
+        <a 
+    href="https://www.roblox.com/games/120602712663780/Zombiescape" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="project-badge"
+>
+    Live on Roblox
+</a>
+
+<span class="project-year">2025</span>
+      </div>
+    </div>
+    <div class="project-body">
+      <p style="font-size:0.9rem; color:var(--muted); margin-bottom:1.5rem; max-width:640px; line-height:1.75;">
+        A 25-room multiplayer survival game where players disguise themselves as in-world props to escape zombies. 
+        Each room is a distinct themed environment : from chess halls to Egyptian temples, desert canyons to medieval churches. 
+        Supports up to 7 players with real-time cross-server coordination.
+      </p>
+
+      <!-- SCREENSHOTS -->
+      <p style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; color:var(--red); text-transform:uppercase; margin-bottom:0.75rem;">Game Rooms</p>
+      <div class="gallery" style="margin-bottom:1.5rem;">
+        <div class="gallery-item wide">
+          <img src="chesss.png" alt="Chess Room : players disguised among giant chess pieces in a dark wood-panelled hall" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <div class="gallery-label">Chess Room · Dark Hall</div>
+        </div>
+        <div class="gallery-item">
+          <img src="thumbnail3.png" alt="Church interior with zombie players hiding among pews" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <div class="gallery-label">Church Interior</div>
+        </div>
+        <div class="gallery-item">
+          <img src="THUMBNAIL1.png" alt="Desert canyon room with cacti props" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <div class="gallery-label">Desert Canyon</div>
+        </div>
+      </div>
+
+      <!-- THUMBNAILS -->
+      <p style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; color:var(--red); text-transform:uppercase; margin-bottom:0.75rem;">Thumbnails & Promo Art</p>
+      <div class="thumb-row" style="margin-bottom:1.5rem;">
+        <div class="thumb-item" style="aspect-ratio:4/3;">
+          <img src="ICON.png" alt="Game icon : cactus disguise thumbnail" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <div class="thumb-label">Icon</div>
+        </div>
+        <div class="thumb-item" style="aspect-ratio:4/3;">
+          <img src="thumbnail2.png" alt="Thumbnail 2 : desert YOU label" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <div class="thumb-label">Thumbnail 2</div>
+        </div>
+        <div class="thumb-item" style="aspect-ratio:4/3;">
+          <img src="THUMBNAIL4.png" alt="Thumbnail 4 : Egyptian temple" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <div class="thumb-label">Thumbnail 3</div>
+        </div>
+      </div>
+
+      <!-- FEATURES -->
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🧟</div>
+          <div class="feature-title">Prop Disguise System</div>
+          <div class="feature-desc">Floor raycasting, bounding-box rotation, mesh scale preservation, timed auto-revert.</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔄</div>
+          <div class="feature-title">Queue & Teleport</div>
+          <div class="feature-desc">Fault-tolerant cross-server teleportation with 5 auto-retries and disconnect handling.</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📡</div>
+          <div class="feature-title">Real-time Sync</div>
+          <div class="feature-desc">RemoteEvents layer syncing transform state, queue status, and game events across all clients.</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🗺️</div>
+          <div class="feature-title">25 Themed Rooms</div>
+          <div class="feature-desc">Chess halls, desert canyons, Egyptian temples, churches, and more , each with unique props.</div>
+        </div>
+      </div>
+      <div class="tech-tags">
+        <span class="tech-tag">Luau</span>
+        <span class="tech-tag">TeleportService</span>
+        <span class="tech-tag">RemoteEvents</span>
+        <span class="tech-tag">Raycasting</span>
+        <span class="tech-tag">TweenService</span>
+        <span class="tech-tag">DataStore</span>
+        <span class="tech-tag">ScreenGui</span>
+        <span class="tech-tag">MessagingService</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<section id="skills">
+  <div class="section-label">/ 02 skills</div>
+  <h2 class="section-title">Technical Arsenal</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-category">Core</div>
+      <h3>Game Development</h3>
+      <ul class="skill-list">
+        <li>Roblox Studio & Luau (Lua)</li>
+        <li>Multiplayer Gameplay Systems</li>
+        <li>C# foundations</li>
+        <li>Game Design & Level Design</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Architecture</div>
+      <h3>Networking & Systems</h3>
+      <ul class="skill-list">
+        <li>Client-Server Architecture</li>
+        <li>RemoteEvents & RemoteFunctions</li>
+        <li>MessagingService</li>
+        <li>TeleportService & HttpService</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Frontend</div>
+      <h3>UI Development</h3>
+      <ul class="skill-list">
+        <li>ScreenGui, Frames, UI Layouts</li>
+        <li>Animations & Tweens</li>
+        <li>Inventory UI & HUD Systems</li>
+        <li>Responsive & Cross-Platform UI</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Character</div>
+      <h3>Avatar Systems</h3>
+      <ul class="skill-list">
+        <li>Avatar Customization</li>
+        <li>Character Systems & Animation</li>
+        <li>Accessories & Equipment</li>
+        <li>3D Asset Integration</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Performance</div>
+      <h3>Optimization & QA</h3>
+      <ul class="skill-list">
+        <li>Memory Management & Profiling</li>
+        <li>Debug & Performance Optimization</li>
+        <li>Bug Testing & QA</li>
+        <li>Version Control & Deployment</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Data & Cloud</div>
+      <h3>Backend & Data</h3>
+      <ul class="skill-list">
+        <li>DataStores & ProfileService</li>
+        <li>Web API Integration</li>
+        <li>AWS EC2 & Cloud Infra</li>
+        <li>Blender Basics & 3D Assets</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<section id="experience">
+  <div class="section-label">/ 03 experience</div>
+  <h2 class="section-title">Professional Background</h2>
+  <div class="exp-list">
+    <div class="exp-card">
+      <div class="exp-dot"></div>
+      <div>
+        <div class="exp-role">Technical Project Coordinator</div>
+        <div class="exp-company">Unisys <span class="period">· Aug 2025 – Present</span></div>
+        <ul class="exp-bullets">
+          <li>Coordinating cross-functional migration projects, managing timelines and stakeholder communication.</li>
+          <li>Tracking project progress, identifying blockers, and driving resolution across technical teams.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-dot" style="background:var(--muted);"></div>
+      <div>
+        <div class="exp-role">Cloud Engineer</div>
+        <div class="exp-company">Unisys <span class="period">· Oct 2024 – Jul 2025</span></div>
+        <ul class="exp-bullets">
+          <li>Maintained and monitored cloud and on-premises infrastructure across multi-stakeholder environments.</li>
+          <li>Managed end-to-end EC2 lifecycle , backups, provisioning, decommissioning, volume restoration.</li>
+          <li>Administered AWS environments ensuring reliability, security compliance, and SLA adherence.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-dot" style="background:var(--muted);"></div>
+      <div>
+        <div class="exp-role">B.Sc. Computer Science</div>
+        <div class="exp-company">REVA University, Bangalore <span class="period">· 2021 – 2025</span></div>
+        <ul class="exp-bullets">
+          <li>GPA: 8.3 / 10 , strong foundation in software engineering and systems programming.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<section id="contact">
+  <div class="section-label">/ 04 contact</div>
+  <h2 class="section-title">Let's Build Together</h2>
+  <div class="contact-grid">
+    <a class="contact-card" href="mailto:prachinanjannavar@gmail.com">
+      <div class="contact-label">Email</div>
+      <div class="contact-value">prachinanjannavar@gmail.com</div>
+      <div class="contact-arrow">↗</div>
+    </a>
+    <div class="contact-card">
+      <div class="contact-label">Roblox Username</div>
+      <div class="contact-value">Chaddi_batman</div>
+      <div class="contact-arrow">↗</div>
+    </div>
+    <a class="contact-card">
+      <div class="contact-label">Phone</div>
+      <div class="contact-value">+91 74831 47296</div>
+      <div class="contact-arrow">↗</div>
+    </a>
+    <a class="contact-card" href="https://www.linkedin.com/in/prachi-nanjannavar-479a37216/" target="_blank">
+      <div class="contact-label">LinkedIn</div>
+      <div class="contact-value">View Profile →</div>
+      <div class="contact-arrow">↗</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2025 PRACHI NANJANNAVAR · ROBLOX DEVELOPER · BANGALORE, INDIA
+</footer>
+
+</body>
+</html>
