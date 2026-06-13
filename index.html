@@ -190,6 +190,82 @@
   .contact-value { font-size: 0.9rem; color: var(--text); word-break: break-all; }
   .contact-arrow { font-size: 1.25rem; color: var(--muted); margin-top: auto; align-self: flex-end; }
 
+  /* ── UI DESIGNS SECTION ── */
+  .ui-designs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .ui-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+  }
+  .ui-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .ui-card-img {
+    position: relative;
+    background: var(--surface2);
+  }
+  .ui-card-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+  .ui-card-img .ui-platform-badge {
+    position: absolute; top: 0.75rem; right: 0.75rem;
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(255,60,60,0.4);
+    background: rgba(10,10,15,0.85);
+    color: var(--red);
+    backdrop-filter: blur(4px);
+  }
+  .ui-card-body { padding: 1.25rem 1.5rem 1.5rem; }
+  .ui-card-name { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
+  .ui-card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+  .ui-feature-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .ui-pill {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
+    padding: 0.25rem 0.65rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  /* Zombie pair: two images stacked vertically */
+  .ui-card-img-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--border);
+  }
+  .ui-card-img-pair > div {
+    position: relative;
+    background: var(--surface2);
+  }
+  .ui-card-img-pair img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+  .ui-card-img-pair .split-label {
+    position: absolute; bottom: 0.5rem; left: 0.5rem;
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    background: rgba(10,10,15,0.85); color: rgba(255,255,255,0.65);
+    backdrop-filter: blur(4px);
+  }
+  .ui-card.wide-pair .ui-card-img-pair .split-label {
+    position: absolute; bottom: 0.5rem; left: 0.5rem;
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    background: rgba(10,10,15,0.85); color: rgba(255,255,255,0.65);
+    backdrop-filter: blur(4px);
+  }
+
   footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
 
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -208,10 +284,11 @@
     .hero { padding: 7rem 1.25rem 4rem; }
     .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
     .project-header { flex-direction: column; }
-    .contact-grid { grid-column: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
     .gallery { grid-template-columns: 1fr; }
     .gallery-item.wide { aspect-ratio: 16/9; }
     .thumb-row { grid-template-columns: 1fr 1fr; }
+    /* ui-designs-grid is already single column flex — no override needed */
   }
 </style>
 </head>
@@ -221,6 +298,7 @@
   <div class="nav-logo">PRACHI.DEV</div>
   <ul class="nav-links">
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#ui-designs">UI Designs</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -271,16 +349,8 @@
         <div class="project-sub">Luau · Roblox Studio · Multiplayer Prop-Hunt Survival</div>
       </div>
       <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem;">
-        <a 
-    href="https://www.roblox.com/games/120602712663780/Zombiescape" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    class="project-badge"
->
-    Live on Roblox
-</a>
-
-<span class="project-year">2025</span>
+        <a href="https://www.roblox.com/games/120602712663780/Zombiescape" target="_blank" rel="noopener noreferrer" class="project-badge">Live on Roblox</a>
+        <span class="project-year">2025</span>
       </div>
     </div>
     <div class="project-body">
@@ -290,41 +360,38 @@
         Supports up to 7 players with real-time cross-server coordination.
       </p>
 
-      <!-- SCREENSHOTS -->
       <p style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; color:var(--red); text-transform:uppercase; margin-bottom:0.75rem;">Game Rooms</p>
       <div class="gallery" style="margin-bottom:1.5rem;">
         <div class="gallery-item wide">
-          <img src="chesss.png" alt="Chess Room : players disguised among giant chess pieces in a dark wood-panelled hall" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <img src="chesss.png" alt="Chess Room" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
           <div class="gallery-label">Chess Room · Dark Hall</div>
         </div>
         <div class="gallery-item">
-          <img src="thumbnail3.png" alt="Church interior with zombie players hiding among pews" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <img src="thumbnail3.png" alt="Church Interior" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
           <div class="gallery-label">Church Interior</div>
         </div>
         <div class="gallery-item">
-          <img src="THUMBNAIL1.png" alt="Desert canyon room with cacti props" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <img src="THUMBNAIL1.png" alt="Desert Canyon" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
           <div class="gallery-label">Desert Canyon</div>
         </div>
       </div>
 
-      <!-- THUMBNAILS -->
       <p style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; color:var(--red); text-transform:uppercase; margin-bottom:0.75rem;">Thumbnails & Promo Art</p>
       <div class="thumb-row" style="margin-bottom:1.5rem;">
         <div class="thumb-item" style="aspect-ratio:4/3;">
-          <img src="ICON.png" alt="Game icon : cactus disguise thumbnail" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <img src="ICON.png" alt="Game icon" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
           <div class="thumb-label">Icon</div>
         </div>
         <div class="thumb-item" style="aspect-ratio:4/3;">
-          <img src="thumbnail2.png" alt="Thumbnail 2 : desert YOU label" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <img src="thumbnail2.png" alt="Thumbnail 2" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
           <div class="thumb-label">Thumbnail 2</div>
         </div>
         <div class="thumb-item" style="aspect-ratio:4/3;">
-          <img src="THUMBNAIL4.png" alt="Thumbnail 4 : Egyptian temple" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+          <img src="THUMBNAIL4.png" alt="Thumbnail 4" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
           <div class="thumb-label">Thumbnail 3</div>
         </div>
       </div>
 
-      <!-- FEATURES -->
       <div class="feature-grid">
         <div class="feature-item">
           <div class="feature-icon">🧟</div>
@@ -363,8 +430,81 @@
 
 <hr class="section-divider">
 
+<!-- ══════════════════════════════════════
+     UI DESIGNS SECTION
+══════════════════════════════════════ -->
+<section id="ui-designs">
+  <div class="section-label">/ 02 ui designs</div>
+  <h2 class="section-title">Interface Design</h2>
+
+  <div class="ui-designs-grid">
+
+    <!-- Flower Shop UI -->
+    <div class="ui-card">
+      <div class="ui-card-img" style="aspect-ratio: 4/3;">
+        <img src="flower shop UI.png" alt="Flower Shop UI" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+        <span class="ui-platform-badge">Interactive UI</span>
+      </div>
+      <div class="ui-card-body">
+        <div class="ui-card-name">🌸 Flower Shop</div>
+        <div class="ui-card-desc">A shop interface with interactable product tabs for browsing flower categories. Clean layout with tab-switching navigation to display items by type.</div>
+        <div class="ui-feature-pills">
+          <span class="ui-pill">Tab Navigation</span>
+          <span class="ui-pill">Product Display</span>
+          <span class="ui-pill">Interactive</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Music Player UI -->
+    <div class="ui-card">
+      <div class="ui-card-img" style="aspect-ratio: 4/3;">
+        <img src="music phone UI.png" alt="Music Player UI" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+        <span class="ui-platform-badge">Mobile UI</span>
+      </div>
+      <div class="ui-card-body">
+        <div class="ui-card-name">🎵 Music Player</div>
+        <div class="ui-card-desc">A mobile music player interface with playback controls — plays music and skips to the next track. Designed for a compact phone-sized layout.</div>
+        <div class="ui-feature-pills">
+          <span class="ui-pill">Playback Controls</span>
+          <span class="ui-pill">Track Skip</span>
+          <span class="ui-pill">Mobile Layout</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zombie Survival — Mobile + PC stacked -->
+    <div class="ui-card">
+      <div class="ui-card-img-pair">
+        <div>
+          <img src="mobile responsive UI.png" alt="Zombiescape Mobile UI" onerror="this.style.display='none'">
+          <div class="split-label">📱 Mobile</div>
+        </div>
+        <div>
+          <img src="pc UI.png" alt="Zombiescape PC UI" onerror="this.style.display='none'">
+          <div class="split-label">🖥 PC</div>
+        </div>
+      </div>
+      <div class="ui-card-body">
+        <div class="ui-card-name">🧟 Zombiescape — Cross-Platform HUD</div>
+        <div class="ui-card-desc">The same in-game HUD designed for both mobile and PC. The mobile layout adapts controls for touch input with a dedicated sprint button, while the PC version uses keyboard-driven interactions. Both share the same core design language.</div>
+        <div class="ui-feature-pills">
+          <span class="ui-pill">Responsive Layout</span>
+          <span class="ui-pill">Mobile Touch Controls</span>
+          <span class="ui-pill">PC Keyboard Input</span>
+          <span class="ui-pill">Cross-Platform</span>
+          <span class="ui-pill">Roblox ScreenGui</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
 <section id="skills">
-  <div class="section-label">/ 02 skills</div>
+  <div class="section-label">/ 03 skills</div>
   <h2 class="section-title">Technical Arsenal</h2>
   <div class="skills-grid">
     <div class="skill-card">
@@ -433,7 +573,7 @@
 <hr class="section-divider">
 
 <section id="experience">
-  <div class="section-label">/ 03 experience</div>
+  <div class="section-label">/ 04 experience</div>
   <h2 class="section-title">Professional Background</h2>
   <div class="exp-list">
     <div class="exp-card">
@@ -475,7 +615,7 @@
 <hr class="section-divider">
 
 <section id="contact">
-  <div class="section-label">/ 04 contact</div>
+  <div class="section-label">/ 05 contact</div>
   <h2 class="section-title">Let's Build Together</h2>
   <div class="contact-grid">
     <a class="contact-card" href="mailto:prachinanjannavar@gmail.com">
