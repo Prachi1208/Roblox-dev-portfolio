@@ -182,6 +182,16 @@
   .exp-bullets li { font-size: 0.85rem; color: var(--muted); padding-left: 1rem; position: relative; line-height: 1.6; }
   .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-size: 0.75rem; }
 
+  /* Role sub-sections inside an exp-card */
+  .exp-roles { display: flex; flex-direction: column; gap: 1.25rem; }
+  .exp-role-block {}
+  .exp-role-title {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 0.4rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .exp-role-title::before { content: ''; display: inline-block; width: 1rem; height: 1px; background: var(--red); }
+
   /* CONTACT */
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .contact-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; transition: border-color 0.2s; text-decoration: none; cursor: pointer; }
@@ -190,80 +200,30 @@
   .contact-value { font-size: 0.9rem; color: var(--text); word-break: break-all; }
   .contact-arrow { font-size: 1.25rem; color: var(--muted); margin-top: auto; align-self: flex-end; }
 
-  /* ── UI DESIGNS SECTION ── */
-  .ui-designs-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .ui-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-  }
+  /* UI DESIGNS SECTION */
+  .ui-designs-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+  .ui-card { background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.2s, transform 0.2s; position: relative; }
   .ui-card:hover { border-color: var(--border2); transform: translateY(-2px); }
-  .ui-card-img {
-    position: relative;
-    background: var(--surface2);
-  }
-  .ui-card-img img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-  }
+  .ui-card-img { position: relative; background: var(--surface2); }
+  .ui-card-img img { width: 100%; height: auto; display: block; object-fit: contain; }
   .ui-card-img .ui-platform-badge {
     position: absolute; top: 0.75rem; right: 0.75rem;
     font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 0.25rem 0.6rem;
-    border: 1px solid rgba(255,60,60,0.4);
-    background: rgba(10,10,15,0.85);
-    color: var(--red);
-    backdrop-filter: blur(4px);
+    padding: 0.25rem 0.6rem; border: 1px solid rgba(255,60,60,0.4);
+    background: rgba(10,10,15,0.85); color: var(--red); backdrop-filter: blur(4px);
   }
   .ui-card-body { padding: 1.25rem 1.5rem 1.5rem; }
   .ui-card-name { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
   .ui-card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
   .ui-feature-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .ui-pill {
-    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
-    padding: 0.25rem 0.65rem;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--muted);
-  }
-  /* Zombie pair: two images stacked vertically */
-  .ui-card-img-pair {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    background: var(--border);
-  }
-  .ui-card-img-pair > div {
-    position: relative;
-    background: var(--surface2);
-  }
-  .ui-card-img-pair img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-  }
+  .ui-pill { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; padding: 0.25rem 0.65rem; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); }
+  .ui-card-img-pair { display: flex; flex-direction: column; gap: 2px; background: var(--border); }
+  .ui-card-img-pair > div { position: relative; background: var(--surface2); }
+  .ui-card-img-pair img { width: 100%; height: auto; display: block; object-fit: contain; }
   .ui-card-img-pair .split-label {
     position: absolute; bottom: 0.5rem; left: 0.5rem;
     font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 0.2rem 0.5rem;
-    background: rgba(10,10,15,0.85); color: rgba(255,255,255,0.65);
-    backdrop-filter: blur(4px);
-  }
-  .ui-card.wide-pair .ui-card-img-pair .split-label {
-    position: absolute; bottom: 0.5rem; left: 0.5rem;
-    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 0.2rem 0.5rem;
-    background: rgba(10,10,15,0.85); color: rgba(255,255,255,0.65);
-    backdrop-filter: blur(4px);
+    padding: 0.2rem 0.5rem; background: rgba(10,10,15,0.85); color: rgba(255,255,255,0.65); backdrop-filter: blur(4px);
   }
 
   footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
@@ -288,7 +248,6 @@
     .gallery { grid-template-columns: 1fr; }
     .gallery-item.wide { aspect-ratio: 16/9; }
     .thumb-row { grid-template-columns: 1fr 1fr; }
-    /* ui-designs-grid is already single column flex — no override needed */
   }
 </style>
 </head>
@@ -430,16 +389,12 @@
 
 <hr class="section-divider">
 
-<!-- ══════════════════════════════════════
-     UI DESIGNS SECTION
-══════════════════════════════════════ -->
 <section id="ui-designs">
   <div class="section-label">/ 02 ui designs</div>
   <h2 class="section-title">Interface Design</h2>
 
   <div class="ui-designs-grid">
 
-    <!-- Flower Shop UI -->
     <div class="ui-card">
       <div class="ui-card-img" style="aspect-ratio: 4/3;">
         <img src="flower shop UI.png" alt="Flower Shop UI" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
@@ -456,7 +411,6 @@
       </div>
     </div>
 
-    <!-- Music Player UI -->
     <div class="ui-card">
       <div class="ui-card-img" style="aspect-ratio: 4/3;">
         <img src="music phone UI.png" alt="Music Player UI" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
@@ -473,7 +427,6 @@
       </div>
     </div>
 
-    <!-- Zombie Survival — Mobile + PC stacked -->
     <div class="ui-card">
       <div class="ui-card-img-pair">
         <div>
@@ -576,8 +529,34 @@
   <div class="section-label">/ 04 experience</div>
   <h2 class="section-title">Professional Background</h2>
   <div class="exp-list">
+
+    <!-- ForestlyGames — NEW ENTRY (most recent Roblox commercial work) -->
     <div class="exp-card">
       <div class="exp-dot"></div>
+      <div>
+        <div class="exp-role">ForestlyGames — Mad AFK Smash <span style="font-family:var(--font-mono); font-size:11px; color:var(--muted); font-weight:400;">(Unpublished)</span></div>
+        <div class="exp-company">Commercial Roblox Project <span class="period">· 2025 – Present</span></div>
+        <div class="exp-roles">
+          <div class="exp-role-block">
+            <div class="exp-role-title">Scripter</div>
+            <ul class="exp-bullets">
+              <li>Developed progression systems centred around collectible orbs — players acquire, manage, and merge lower-tier orbs into higher-tier variants through a custom evolution system.</li>
+              <li>Implemented data persistence with DataStores and handled server-client communication via RemoteEvents and RemoteFunctions.</li>
+            </ul>
+          </div>
+          <div class="exp-role-block">
+            <div class="exp-role-title">GUI Editor</div>
+            <ul class="exp-bullets">
+              <li>Designed and implemented interfaces for the orb inventory, merging system, progression menus, and shop screens.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unisys TPC -->
+    <div class="exp-card">
+      <div class="exp-dot" style="background:var(--muted);"></div>
       <div>
         <div class="exp-role">Technical Project Coordinator</div>
         <div class="exp-company">Unisys <span class="period">· Aug 2025 – Present</span></div>
@@ -587,6 +566,8 @@
         </ul>
       </div>
     </div>
+
+    <!-- Unisys Cloud Engineer -->
     <div class="exp-card">
       <div class="exp-dot" style="background:var(--muted);"></div>
       <div>
@@ -594,21 +575,24 @@
         <div class="exp-company">Unisys <span class="period">· Oct 2024 – Jul 2025</span></div>
         <ul class="exp-bullets">
           <li>Maintained and monitored cloud and on-premises infrastructure across multi-stakeholder environments.</li>
-          <li>Managed end-to-end EC2 lifecycle , backups, provisioning, decommissioning, volume restoration.</li>
+          <li>Managed end-to-end EC2 lifecycle — backups, provisioning, decommissioning, volume restoration.</li>
           <li>Administered AWS environments ensuring reliability, security compliance, and SLA adherence.</li>
         </ul>
       </div>
     </div>
+
+    <!-- Education -->
     <div class="exp-card">
       <div class="exp-dot" style="background:var(--muted);"></div>
       <div>
         <div class="exp-role">B.Sc. Computer Science</div>
         <div class="exp-company">REVA University, Bangalore <span class="period">· 2021 – 2025</span></div>
         <ul class="exp-bullets">
-          <li>GPA: 8.3 / 10 , strong foundation in software engineering and systems programming.</li>
+          <li>GPA: 8.3 / 10 — strong foundation in software engineering and systems programming.</li>
         </ul>
       </div>
     </div>
+
   </div>
 </section>
 
