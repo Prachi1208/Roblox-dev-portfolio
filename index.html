@@ -158,6 +158,43 @@
   .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .tech-tag { font-family: var(--font-mono); font-size: 11px; padding: 0.3rem 0.7rem; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.05em; }
 
+  /* SYSTEMS */
+  .system-card { border: 1px solid var(--border); background: var(--surface); margin-bottom: 1.5rem; overflow: hidden; transition: border-color 0.2s; }
+  .system-card:hover { border-color: var(--border2); }
+  .system-header { padding: 1.75rem 2.5rem 1.25rem; border-bottom: 1px solid var(--border); }
+  .system-name { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .system-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; max-width: 680px; }
+  .system-body { padding: 1.5rem 2.5rem 2rem; }
+  .code-block {
+    background: #0d0d13; border: 1px solid var(--border); border-radius: 6px;
+    padding: 1.25rem 1.5rem; overflow-x: auto; margin-bottom: 1.25rem;
+  }
+  .code-block pre { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.65; color: #d8d5e0; white-space: pre; }
+  .code-caption { font-size: 0.8rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; max-width: 680px; }
+  .code-toggle-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.55rem 1.1rem; background: transparent; color: var(--red);
+    font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.05em; border: 1px solid rgba(255,60,60,0.35); border-radius: 5px;
+    cursor: pointer; margin-bottom: 1.25rem; transition: background 0.2s, color 0.2s;
+  }
+  .code-toggle-btn:hover { background: var(--red-dim); }
+  .code-toggle-btn .chevron { display: inline-block; transition: transform 0.2s; font-size: 10px; }
+  .code-toggle-btn.is-open .chevron { transform: rotate(90deg); }
+  .code-toggle-content { display: none; }
+  .code-toggle-content.is-open { display: block; }
+  .video-frame {
+    border: 1px solid var(--border); background: var(--surface2);
+    aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .video-label {
+    position: absolute; bottom: 0.6rem; left: 0.6rem;
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.55rem; background: rgba(10,10,15,0.85); color: var(--red); border: 1px solid rgba(255,60,60,0.3);
+  }
+
   /* SKILLS */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
   .skill-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.2s; }
@@ -256,6 +293,7 @@
 <nav>
   <div class="nav-logo">PRACHI.DEV</div>
   <ul class="nav-links">
+    <li><a href="#systems">Systems</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#ui-designs">UI Designs</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -297,8 +335,156 @@
 
 <hr class="section-divider">
 
+<section id="systems">
+  <div class="section-label">/ 01 systems</div>
+  <h2 class="section-title">Systems I've Engineered</h2>
+
+  <div class="system-card">
+    <div class="system-header">
+      <div class="system-name">Cross-Server Teleportation</div>
+      <p class="system-desc">A fault-tolerant queue system that teleports groups of players to a separate game server. TeleportAsync fails silently in live production far more often than tutorials suggest, so the queue retries automatically, recovers cleanly if every attempt fails, and keeps the on-screen status in sync so no player is left stuck mid-teleport.</p>
+    </div>
+    <div class="system-body">
+      <button class="code-toggle-btn" onclick="toggleScript(this, 'script-teleport')"><span class="chevron">▶</span> Show Script</button>
+      <div class="code-toggle-content" id="script-teleport">
+      <div class="code-block"><pre>local function teleportQueue()
+    canJoin = false
+    statusLabel.Text = "Teleporting!"
+    local attempts = 0
+    local success = false
+
+    repeat
+        attempts += 1
+        local ok, err = pcall(function()
+            TeleportService:TeleportAsync(PLACE_ID, queue)
+        end)
+        if ok then
+            success = true
+        else
+            warn("Attempt " .. attempts .. " failed: " .. tostring(err))
+            task.wait(3)
+        end
+    until success or attempts >= 5
+
+    if not success then
+        warn("All teleport attempts failed.")
+        statusLabel.Text = "Teleport Failed. Try again."
+        task.wait(3)
+        canJoin = true
+        counting = false
+        updateStatus()
+        return
+    end
+end</pre></div>
+      <p class="code-caption">TeleportAsync can fail for reasons outside your control, rate limits, unpublished places, server hiccups. This retries up to 5 times with a short backoff, and if every attempt fails, it fully resets queue state and the UI instead of leaving players stuck watching "Teleporting!" forever.</p>
+      </div>
+      <div class="video-frame">
+        <video controls autoplay muted loop playsinline preload="auto" src="Teleportation.mp4"></video>
+        <div class="video-label">Teleportation.mp4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="system-card">
+    <div class="system-header">
+      <div class="system-name">Orb Merge System</div>
+      <p class="system-desc">Players merge three matching orbs into the next tier of a 29-step progression chain. The merge function validates the player actually owns enough matching orbs, safely detaches any of them that were equipped before consuming them, grants the resulting orb, and re-equips it if the originals were in use, all in one atomic operation so an interrupted merge can never leave a player's inventory in a broken state.</p>
+    </div>
+    <div class="system-body">
+      <button class="code-toggle-btn" onclick="toggleScript(this, 'script-merge')"><span class="chevron">▶</span> Show Script</button>
+      <div class="code-toggle-content" id="script-merge">
+      <div class="code-block"><pre>function VisualFlexConfig.MergeOrbStacks(visuals, leftKey, rightKey)
+    if type(visuals) ~= "table" then
+        return false, "Orb inventory unavailable."
+    end
+
+    local createdKey = VisualFlexConfig.GetOrbFusionResultKey(leftKey, rightKey)
+    if not createdKey then
+        return false, "Choose three matching orbs of a non-max form."
+    end
+
+    visuals.OrbStacks = type(visuals.OrbStacks) == "table" and visuals.OrbStacks or {}
+    local leftCount = VisualFlexConfig.GetOrbStackCount(visuals, leftKey)
+    if leftCount < ORBS_PER_MERGE then
+        return false, "Three matching orbs are required."
+    end
+
+    local equipped = visuals.Equipped and (visuals.Equipped.Orbs or visuals.Equipped.Cores or visuals.Equipped.Orbits) or {}
+    local consumedEquipped = 0
+    for index = #equipped, 1, -1 do
+        if equipped[index] == leftKey and consumedEquipped < ORBS_PER_MERGE then
+            table.remove(equipped, index)
+            consumedEquipped += 1
+        end
+    end
+
+    visuals.OrbStacks[leftKey] = leftCount - ORBS_PER_MERGE
+    if visuals.OrbStacks[leftKey] <= 0 then
+        visuals.OrbStacks[leftKey] = nil
+    end
+
+    createdKey = VisualFlexConfig.AddOrbStack(visuals, createdKey, nil, 1)
+    if consumedEquipped > 0 and #equipped < VisualFlexConfig.GetCoreLimit(visuals) then
+        table.insert(equipped, createdKey)
+    end
+
+    visuals.Equipped = type(visuals.Equipped) == "table" and visuals.Equipped or {}
+    visuals.Equipped.Orbs = equipped
+    visuals.Equipped.Cores = equipped
+    visuals.Equipped.Orbits = equipped
+
+    return true, createdKey, consumedEquipped
+end</pre></div>
+      <p class="code-caption">Runs entirely server-side so a client can never fake owning orbs it doesn't have. It checks the player holds at least 3 matching orbs before touching anything, removes exactly 3 (preferring ones that were equipped), grants the next tier via a shared merge-order lookup, and re-equips the result if the consumed orbs were in use, so a player's loadout never silently breaks mid-merge.</p>
+      </div>
+      <div class="video-frame">
+        <video controls autoplay muted loop playsinline preload="auto" src="MergeSystem.mp4"></video>
+        <div class="video-label">MergeSystem.mp4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="system-card">
+    <div class="system-header">
+      <div class="system-name">Prop Disguise System</div>
+      <p class="system-desc">Players can transform into any tagged prop in the world to hide from zombies. The trickiest part isn't the transformation itself, it's making the cloned prop sit correctly on uneven ground: the client raycasts downward every frame to find the floor beneath the player, then corrects the prop's position using its own bounding box so it never floats or clips through terrain, regardless of the prop's size or shape.</p>
+    </div>
+    <div class="system-body">
+      <button class="code-toggle-btn" onclick="toggleScript(this, 'script-prop')"><span class="chevron">▶</span> Show Script</button>
+      <div class="code-toggle-content" id="script-prop">
+      <div class="code-block"><pre>RunService.RenderStepped:Connect(function()
+    if isTransformed and propClone then
+        local rootPos = humanoidRootPart.Position
+
+        local raycastParams = RaycastParams.new()
+        raycastParams.FilterDescendantsInstances = { character, propClone }
+        raycastParams.FilterType = Enum.RaycastFilterType.Exclude
+        local rayResult = workspace:Raycast(rootPos, Vector3.new(0, -10, 0), raycastParams)
+        local floorY = rayResult and rayResult.Position.Y or (rootPos.Y - 3)
+
+        local finalCFrame = CFrame.new(rootPos.X, floorY, rootPos.Z) * snappedRotation
+        propClone:SetPrimaryPartCFrame(finalCFrame)
+
+        local propCF, propSize = propClone:GetBoundingBox()
+        local propBottom = propCF.Position.Y - (propSize.Y / 2)
+        local correction = floorY - propBottom
+        propClone:SetPrimaryPartCFrame(finalCFrame + Vector3.new(0, correction, 0))
+    end
+end)</pre></div>
+      <p class="code-caption">Runs every frame while a player is disguised: a downward raycast finds the floor, then a bounding-box correction snaps the prop flush to it. This keeps any prop, of any size, sitting correctly on stairs, slopes, and uneven terrain without per-item tuning.</p>
+      </div>
+      <div class="video-frame">
+        <video controls autoplay muted loop playsinline preload="auto" src="TransformIntoProps.mp4"></video>
+        <div class="video-label">TransformIntoProps.mp4</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
 <section id="projects">
-  <div class="section-label">/ 01 projects</div>
+  <div class="section-label">/ 02 projects</div>
   <h2 class="section-title">What I've Built</h2>
 
   <div class="project-card">
@@ -353,24 +539,20 @@
 
       <div class="feature-grid">
         <div class="feature-item">
-          <div class="feature-icon">🧟</div>
           <div class="feature-title">Prop Disguise System</div>
           <div class="feature-desc">Floor raycasting, bounding-box rotation, mesh scale preservation, timed auto-revert.</div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🔄</div>
           <div class="feature-title">Queue & Teleport</div>
           <div class="feature-desc">Fault-tolerant cross-server teleportation with 5 auto-retries and disconnect handling.</div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">📡</div>
           <div class="feature-title">Real-time Sync</div>
           <div class="feature-desc">RemoteEvents layer syncing transform state, queue status, and game events across all clients.</div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🗺️</div>
           <div class="feature-title">25 Themed Rooms</div>
-          <div class="feature-desc">Chess halls, desert canyons, Egyptian temples, churches, and more , each with unique props.</div>
+          <div class="feature-desc">Chess halls, desert canyons, Egyptian temples, churches, and more, each with unique props.</div>
         </div>
       </div>
       <div class="tech-tags">
@@ -390,7 +572,7 @@
 <hr class="section-divider">
 
 <section id="ui-designs">
-  <div class="section-label">/ 02 ui designs</div>
+  <div class="section-label">/ 03 ui designs</div>
   <h2 class="section-title">Interface Design</h2>
 
   <div class="ui-designs-grid">
@@ -401,7 +583,7 @@
         <span class="ui-platform-badge">Interactive UI</span>
       </div>
       <div class="ui-card-body">
-        <div class="ui-card-name">🌸 Flower Shop</div>
+        <div class="ui-card-name">Flower Shop</div>
         <div class="ui-card-desc">A shop interface with interactable product tabs for browsing flower categories. Clean layout with tab-switching navigation to display items by type.</div>
         <div class="ui-feature-pills">
           <span class="ui-pill">Tab Navigation</span>
@@ -415,15 +597,15 @@
       <div class="ui-card-img-pair">
         <div>
           <img src="mobile responsive UI.png" alt="Zombiescape Mobile UI" onerror="this.style.display='none'">
-          <div class="split-label">📱 Mobile</div>
+          <div class="split-label">Mobile</div>
         </div>
         <div>
           <img src="pc UI.png" alt="Zombiescape PC UI" onerror="this.style.display='none'">
-          <div class="split-label">🖥 PC</div>
+          <div class="split-label">PC</div>
         </div>
       </div>
       <div class="ui-card-body">
-        <div class="ui-card-name">🧟 Zombiescape — Cross-Platform HUD</div>
+        <div class="ui-card-name">Zombiescape — Cross-Platform HUD</div>
         <div class="ui-card-desc">The same in-game HUD designed for both mobile and PC. The mobile layout adapts controls for touch input with a dedicated sprint button, while the PC version uses keyboard-driven interactions. Both share the same core design language.</div>
         <div class="ui-feature-pills">
           <span class="ui-pill">Responsive Layout</span>
@@ -441,7 +623,7 @@
         <span class="ui-platform-badge">Inventory UI</span>
       </div>
       <div class="ui-card-body">
-        <div class="ui-card-name">🔮 Orbs — Inventory Interface</div>
+        <div class="ui-card-name">Orbs — Inventory Interface</div>
         <div class="ui-card-desc">Orb collection and management UI displaying player-owned orbs with tier indicators, merge readiness states, and quantity counters. Designed for quick scanning and interaction across large inventories.</div>
         <div class="ui-feature-pills">
           <span class="ui-pill">Inventory Grid</span>
@@ -458,7 +640,7 @@
         <span class="ui-platform-badge">Progression UI</span>
       </div>
       <div class="ui-card-body">
-        <div class="ui-card-name">🥚 Orb Hatcher — Progression Interface</div>
+        <div class="ui-card-name">Orb Hatcher — Progression Interface</div>
         <div class="ui-card-desc">Gacha-style hatch interface for acquiring new orbs. Features animated reveal sequences, rarity callouts, and hatch cost display — designed to make each pull feel rewarding and legible at a glance.</div>
         <div class="ui-feature-pills">
           <span class="ui-pill">Hatch Animation</span>
@@ -475,7 +657,7 @@
 <hr class="section-divider">
 
 <section id="skills">
-  <div class="section-label">/ 03 skills</div>
+  <div class="section-label">/ 04 skills</div>
   <h2 class="section-title">Technical Arsenal</h2>
   <div class="skills-grid">
 
@@ -576,7 +758,7 @@
 <hr class="section-divider">
 
 <section id="experience">
-  <div class="section-label">/ 04 experience</div>
+  <div class="section-label">/ 05 experience</div>
   <h2 class="section-title">Professional Background</h2>
   <div class="exp-list">
 
@@ -669,7 +851,7 @@
 <hr class="section-divider">
 
 <section id="contact">
-  <div class="section-label">/ 05 contact</div>
+  <div class="section-label">/ 06 contact</div>
   <h2 class="section-title">Let's Build Together</h2>
   <div class="contact-grid">
     <a class="contact-card" href="mailto:prachinanjannavar@gmail.com">
@@ -699,5 +881,14 @@
   © 2025 PRACHI NANJANNAVAR · ROBLOX DEVELOPER · BANGALORE, INDIA
 </footer>
 
+<script>
+  function toggleScript(btn, contentId) {
+    var content = document.getElementById(contentId);
+    if (!content) return;
+    var isOpen = content.classList.toggle('is-open');
+    btn.classList.toggle('is-open', isOpen);
+    btn.lastChild.textContent = isOpen ? ' Hide Script' : ' Show Script';
+  }
+</script>
 </body>
 </html>
