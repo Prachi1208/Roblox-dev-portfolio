@@ -606,81 +606,37 @@ end)</pre></div>
  <div class="project-card">
     <div class="project-header">
       <div>
-        <div class="project-name">Zombie Escape (Solo developed)</div>
-        <div class="project-sub">Luau · Roblox Studio · Multiplayer Prop-Hunt Survival</div>
+        <div class="project-name"> Mad AFK Smash Gods </div>
+        <div class="project-sub">AFK themed game</div>
       </div>
       <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem;">
-        <a href="https://www.roblox.com/games/120602712663780/Zombiescape" target="_blank" rel="noopener noreferrer" class="project-badge">Live on Roblox</a>
-        <span class="project-year">2025</span>
+        <a href="https://www.roblox.com/games/103034638742466/MAD-AFK-Smash-Gods" target="_blank" rel="noopener noreferrer" class="project-badge">Live on Roblox</a>
+        <span class="project-year">2026</span>
       </div>
     </div>
     <div class="project-body">
       <p style="font-size:0.9rem; color:var(--muted); margin-bottom:1.5rem; max-width:640px; line-height:1.75;">
-        A 25-room multiplayer survival game where players disguise themselves as in-world props to escape zombies. 
-        Each room is a distinct themed environment : from chess halls to Egyptian temples, desert canyons to medieval churches. 
-        Supports up to 7 players with real-time cross-server coordination.
+        An engaging AFK progression game where players automatically earn resources over time, unlock exciting collectible orbs, and continuously advance through a rewarding progression system. Players can merge orbs to create stronger, rarer versions, adding a satisfying layer of strategy and long-term progression. The game is designed to keep players engaged through incremental upgrades, rewarding milestones, and a sense of continuous growth.
       </p>
 
-      <p style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; color:var(--red); text-transform:uppercase; margin-bottom:0.75rem;">Game Rooms</p>
-      <div class="gallery" style="margin-bottom:1.5rem;">
-        <div class="gallery-item wide">
-          <img src="chesss.png" alt="Chess Room" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
-          <div class="gallery-label">Chess Room · Dark Hall</div>
-        </div>
-        <div class="gallery-item">
-          <img src="thumbnail3.png" alt="Church Interior" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
-          <div class="gallery-label">Church Interior</div>
-        </div>
-        <div class="gallery-item">
-          <img src="THUMBNAIL1.png" alt="Desert Canyon" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
-          <div class="gallery-label">Desert Canyon</div>
-        </div>
-      </div>
 
-      <p style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; color:var(--red); text-transform:uppercase; margin-bottom:0.75rem;">Thumbnails & Promo Art</p>
-      <div class="thumb-row" style="margin-bottom:1.5rem;">
-        <div class="thumb-item" style="aspect-ratio:4/3;">
-          <img src="ICON.png" alt="Game icon" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
-          <div class="thumb-label">Icon</div>
-        </div>
-        <div class="thumb-item" style="aspect-ratio:4/3;">
-          <img src="thumbnail2.png" alt="Thumbnail 2" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
-          <div class="thumb-label">Thumbnail 2</div>
-        </div>
-        <div class="thumb-item" style="aspect-ratio:4/3;">
-          <img src="THUMBNAIL4.png" alt="Thumbnail 4" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
-          <div class="thumb-label">Thumbnail 3</div>
-        </div>
-      </div>
 
       <div class="feature-grid">
         <div class="feature-item">
-          <div class="feature-title">Prop Disguise System</div>
-          <div class="feature-desc">Floor raycasting, bounding-box rotation, mesh scale preservation, timed auto-revert.</div>
+          <div class="feature-title">Merge System</div>
         </div>
         <div class="feature-item">
-          <div class="feature-title">Queue & Teleport</div>
-          <div class="feature-desc">Fault-tolerant cross-server teleportation with 5 auto-retries and disconnect handling.</div>
+          <div class="feature-title">Orb Hatch System</div>
         </div>
         <div class="feature-item">
           <div class="feature-title">Real-time Sync</div>
           <div class="feature-desc">RemoteEvents layer syncing transform state, queue status, and game events across all clients.</div>
         </div>
         <div class="feature-item">
-          <div class="feature-title">25 Themed Rooms</div>
-          <div class="feature-desc">Chess halls, desert canyons, Egyptian temples, churches, and more, each with unique props.</div>
+          <div class="feature-title">Stud style map</div>
         </div>
       </div>
-      <div class="tech-tags">
-        <span class="tech-tag">Luau</span>
-        <span class="tech-tag">TeleportService</span>
-        <span class="tech-tag">RemoteEvents</span>
-        <span class="tech-tag">Raycasting</span>
-        <span class="tech-tag">TweenService</span>
-        <span class="tech-tag">DataStore</span>
-        <span class="tech-tag">ScreenGui</span>
-        <span class="tech-tag">MessagingService</span>
-      </div>
+
     </div>
   </div>
 </section>
@@ -729,46 +685,6 @@ end)</pre></div>
   <h2 class="section-title">Interface Design</h2>
 
   <div class="ui-designs-grid">
-
-    <div class="ui-card">
-      <div class="ui-card-img" style="aspect-ratio: 4/3;">
-        <img src="flower shop UI.png" alt="Flower Shop UI" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
-        <span class="ui-platform-badge">Interactive UI</span>
-      </div>
-      <div class="ui-card-body">
-        <div class="ui-card-name">Flower Shop</div>
-        <div class="ui-card-desc">A shop interface with interactable product tabs for browsing flower categories. Clean layout with tab-switching navigation to display items by type.</div>
-        <div class="ui-feature-pills">
-          <span class="ui-pill">Tab Navigation</span>
-          <span class="ui-pill">Product Display</span>
-          <span class="ui-pill">Interactive</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="ui-card">
-      <div class="ui-card-img-pair">
-        <div>
-          <img src="mobile responsive UI.png" alt="Zombiescape Mobile UI" onerror="this.style.display='none'">
-          <div class="split-label">Mobile</div>
-        </div>
-        <div>
-          <img src="pc UI.png" alt="Zombiescape PC UI" onerror="this.style.display='none'">
-          <div class="split-label">PC</div>
-        </div>
-      </div>
-      <div class="ui-card-body">
-        <div class="ui-card-name">Zombiescape — Cross-Platform HUD</div>
-        <div class="ui-card-desc">The same in-game HUD designed for both mobile and PC. The mobile layout adapts controls for touch input with a dedicated sprint button, while the PC version uses keyboard-driven interactions. Both share the same core design language.</div>
-        <div class="ui-feature-pills">
-          <span class="ui-pill">Responsive Layout</span>
-          <span class="ui-pill">Mobile Touch Controls</span>
-          <span class="ui-pill">PC Keyboard Input</span>
-          <span class="ui-pill">Cross-Platform</span>
-          <span class="ui-pill">Roblox ScreenGui</span>
-        </div>
-      </div>
-    </div>
 
     <div class="ui-card">
       <div class="ui-card-img">
