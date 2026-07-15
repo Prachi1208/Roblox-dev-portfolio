@@ -263,6 +263,17 @@
     padding: 0.2rem 0.5rem; background: rgba(10,10,15,0.85); color: rgba(255,255,255,0.65); backdrop-filter: blur(4px);
   }
 
+  /* REVIEWS / VOUCHES */
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .review-card { background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+  .review-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .review-card-img { position: relative; background: var(--surface2); border-bottom: 1px solid var(--border); }
+  .review-card-img img { width: 100%; height: auto; display: block; object-fit: contain; }
+  .review-quote-mark { font-family: var(--font-mono); font-size: 2rem; color: var(--red); line-height: 1; margin-bottom: 0.5rem; opacity: 0.6; }
+  .review-card-body { padding: 1.25rem 1.5rem 1.5rem; }
+  .review-project { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+  .review-text { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
   footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
 
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -297,6 +308,7 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#my-builds">My Builds</a></li>
     <li><a href="#ui-designs">UI Designs</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -773,8 +785,55 @@ end)</pre></div>
 
 <hr class="section-divider">
 
+<section id="reviews">
+  <div class="section-label">/ 05 reviews</div>
+  <h2 class="section-title">What Clients Say</h2>
+  <p style="font-size:0.9rem; color:var(--muted); margin-top:-2rem; margin-bottom:2.5rem; max-width:600px; line-height:1.75;">
+    Here are a few recent vouches from people I've worked with.
+  </p>
+
+  <div class="reviews-grid">
+
+    <div class="review-card">
+      <div class="review-card-img">
+        <img src="vouch1.png" alt="Client vouch 1" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+      </div>
+      <div class="review-card-body">
+        <div class="review-quote-mark">"</div>
+        <div class="review-project">Bug Fixing Turnaround</div>
+        <p class="review-text">Brought in to fix a set of bugs on a live project, diagnosed and resolved all of them within a single day, with no disruption to the game's uptime.</p>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-card-img">
+        <img src="vouch2.png" alt="Client vouch 2" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+      </div>
+      <div class="review-card-body">
+        <div class="review-quote-mark">"</div>
+        <div class="review-project">Getwell Inn — Hotel Game</div>
+        <p class="review-text">Feedback from the team behind "Getwell Inn," a hotel-themed Roblox game where I worked on core gameplay systems and progression.</p>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-card-img">
+        <img src="vouch3.png" alt="Client vouch 3" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+      </div>
+      <div class="review-card-body">
+        <div class="review-quote-mark">"</div>
+        <div class="review-project">Anime Nexus — Tower Defense</div>
+        <p class="review-text">Feedback from "Anime Nexus," a tower defense game featuring anime-inspired characters and wave-based combat.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
 <section id="skills">
-  <div class="section-label">/ 05 skills</div>
+  <div class="section-label">/ 06 skills</div>
   <h2 class="section-title">Technical Arsenal</h2>
   <div class="skills-grid">
 
@@ -875,7 +934,7 @@ end)</pre></div>
 <hr class="section-divider">
 
 <section id="experience">
-  <div class="section-label">/ 06 experience</div>
+  <div class="section-label">/ 07 experience</div>
   <h2 class="section-title">Professional Background</h2>
   <div class="exp-list">
 
@@ -968,7 +1027,7 @@ end)</pre></div>
 <hr class="section-divider">
 
 <section id="contact">
-  <div class="section-label">/ 07 contact</div>
+  <div class="section-label">/ 08 contact</div>
   <h2 class="section-title">Let's Build Together</h2>
   <div class="contact-grid">
     <a class="contact-card" href="mailto:prachinanjannavar@gmail.com">
