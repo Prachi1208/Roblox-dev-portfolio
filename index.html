@@ -493,76 +493,113 @@ end)</pre></div>
       </div>
     </div>
   </div>
+
+  <div class="system-card">
+    <div class="system-header">
+      <div class="system-name">Fly System</div>
+      <p class="system-desc">A toggleable flight mode that overrides normal character movement, letting players move freely on all three axes while flying is active and cleanly restoring default humanoid movement the moment it's switched off.</p>
+    </div>
+    <div class="system-body">
+      <button class="code-toggle-btn" onclick="toggleScript(this, 'script-fly')"><span class="chevron">▶</span> Show Script</button>
+      <div class="code-toggle-content" id="script-fly">
+      <div class="code-block"><pre>-- Paste your Fly system script here</pre></div>
+      <p class="code-caption">Add a short explanation of how the fly system works — e.g. BodyVelocity/AlignPosition approach, input handling, and how it restores normal movement on toggle-off.</p>
+      </div>
+      <div class="video-frame">
+        <video controls autoplay muted loop playsinline preload="auto" src="Fly.mp4"></video>
+        <div class="video-label">Fly.mp4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="system-card">
+    <div class="system-header">
+      <div class="system-name">Transform System</div>
+      <p class="system-desc">Describe what this transform system does and how it differs from Prop Disguise — e.g. player-to-character transform, size/shape morph, or ability-driven transformation.</p>
+    </div>
+    <div class="system-body">
+      <button class="code-toggle-btn" onclick="toggleScript(this, 'script-transform2')"><span class="chevron">▶</span> Show Script</button>
+      <div class="code-toggle-content" id="script-transform2">
+      <div class="code-block"><pre>-- Paste your Transform system script here</pre></div>
+      <p class="code-caption">Add a short explanation of the transform mechanic and any edge cases it handles.</p>
+      </div>
+      <div class="video-frame">
+        <video controls autoplay muted loop playsinline preload="auto" src="Transform2.mp4"></video>
+        <div class="video-label">Transform2.mp4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="system-card">
+      <div class="system-header">
+          <div class="system-name">Hotel Elevator System</div>
+          <p class="system-desc">
+              A fully functional multi-floor elevator featuring call buttons, floor selection,
+              synchronized doors, movement logic, and multiplayer support.
+          </p>
+      </div>
+
+      <div class="system-body">
+          <div class="video-frame">
+              <video controls autoplay muted loop playsinline preload="auto" src="Elevator.mp4"></video>
+              <div class="video-label">Elevator.mp4</div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Stain Cleaner Job System -->
+  <div class="system-card">
+      <div class="system-header">
+          <div class="system-name">Stain Cleaner Job System</div>
+          <p class="system-desc">
+              Players inspect hotel rooms and remove stains from floors and furniture using interactive cleaning mechanics. Each completed task rewards players with cash while maintaining the hotel's cleanliness.
+          </p>
+      </div>
+
+      <div class="system-body">
+          <div class="video-frame">
+              <video controls autoplay muted loop playsinline preload="auto" src="Job 1.mp4"></video>
+              <div class="video-label">Job 1.mp4</div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Pest Control Job System -->
+  <div class="system-card">
+      <div class="system-header">
+          <div class="system-name">Pest Control Job System</div>
+          <p class="system-desc">
+              Players locate and eliminate pests throughout the hotel while navigating guest rooms and service areas. The system encourages exploration and rewards quick, efficient completion.
+          </p>
+      </div>
+
+      <div class="system-body">
+          <div class="video-frame">
+              <video controls autoplay muted loop playsinline preload="auto" src="Job 2.mp4"></video>
+              <div class="video-label">Job 2.mp4</div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Swimming Pool Cleanup Job System -->
+  <div class="system-card">
+      <div class="system-header">
+          <div class="system-name">Swimming Pool Cleanup Job System</div>
+          <p class="system-desc">
+              Players maintain the hotel's swimming pool by collecting floating debris and restoring cleanliness. The job features interactive collection mechanics and a satisfying progression loop.
+          </p>
+      </div>
+
+      <div class="system-body">
+          <div class="video-frame">
+              <video controls autoplay muted loop playsinline preload="auto" src="Job 3.mp4"></video>
+              <div class="video-label">Job 3.mp4</div>
+          </div>
+      </div>
+  </div>
+
 </section>
 
-<div class="system-card">
-    <div class="system-header">
-        <div class="system-name">Hotel Elevator System</div>
-        <p class="system-desc">
-            A fully functional multi-floor elevator featuring call buttons, floor selection,
-            synchronized doors, movement logic, and multiplayer support.
-        </p>
-    </div>
-
-    <div class="system-body">
-        <div class="video-frame">
-            <video controls autoplay muted loop playsinline preload="auto" src="Elevator.mp4"></video>
-            <div class="video-label">Elevator.mp4</div>
-        </div>
-    </div>
-</div>
-
-<!-- Stain Cleaner Job System -->
-<div class="system-card">
-    <div class="system-header">
-        <div class="system-name">Stain Cleaner Job System</div>
-        <p class="system-desc">
-            Players inspect hotel rooms and remove stains from floors and furniture using interactive cleaning mechanics. Each completed task rewards players with cash while maintaining the hotel's cleanliness.
-        </p>
-    </div>
-
-    <div class="system-body">
-        <div class="video-frame">
-            <video controls autoplay muted loop playsinline preload="auto" src="Job 1.mp4"></video>
-            <div class="video-label">Job 1.mp4</div>
-        </div>
-    </div>
-</div>
-
-<!-- Pest Control Job System -->
-<div class="system-card">
-    <div class="system-header">
-        <div class="system-name">Pest Control Job System</div>
-        <p class="system-desc">
-            Players locate and eliminate pests throughout the hotel while navigating guest rooms and service areas. The system encourages exploration and rewards quick, efficient completion.
-        </p>
-    </div>
-
-    <div class="system-body">
-        <div class="video-frame">
-            <video controls autoplay muted loop playsinline preload="auto" src="Job 2.mp4"></video>
-            <div class="video-label">Job 2.mp4</div>
-        </div>
-    </div>
-</div>
-
-<!-- Swimming Pool Cleanup Job System -->
-<div class="system-card">
-    <div class="system-header">
-        <div class="system-name">Swimming Pool Cleanup Job System</div>
-        <p class="system-desc">
-            Players maintain the hotel's swimming pool by collecting floating debris and restoring cleanliness. The job features interactive collection mechanics and a satisfying progression loop.
-        </p>
-    </div>
-
-    <div class="system-body">
-        <div class="video-frame">
-            <video controls autoplay muted loop playsinline preload="auto" src="Job 3.mp4"></video>
-            <div class="video-label">Job 3.mp4</div>
-        </div>
-    </div>
-</div>
- 
 <hr class="section-divider">
 
 <section id="projects">
