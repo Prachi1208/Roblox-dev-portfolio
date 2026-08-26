@@ -271,9 +271,9 @@
     font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
     padding: 0.2rem 0.5rem; background: rgba(10,10,15,0.85); color: rgba(255,255,255,0.65); backdrop-filter: blur(4px);
   }
-  .ui-simple-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-  .ui-simple-item { border: 1px solid var(--border); background: var(--surface2); overflow: hidden; }
-  .ui-simple-item img { width: 100%; height: auto; display: block; object-fit: contain; }
+.ui-simple-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+.ui-simple-item { border: 1px solid var(--border); background: var(--surface2); overflow: hidden; }
+.ui-simple-item img { width: 100%; height: auto; display: block; }
 
   /* REVIEWS / VOUCHES */
   .reviews-grid { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -367,7 +367,7 @@
   <h2 class="section-title">Systems I've Engineered</h2>
 
   <p class="systems-disclaimer">
-    <strong>Fair warning:</strong> this section is the "highlight reel," not the full reel — turns out a portfolio page has a scroll limit and my shipped work doesn't. Everything below survived the cut; everything else is living a happy, undocumented life in a Studio project somewhere.
+    <strong>Fair warning:</strong> This portfolio only shows about 10% of my actual work.
   </p>
 
   <div class="system-card">
