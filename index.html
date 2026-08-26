@@ -102,6 +102,7 @@
   .project-name { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
   .project-sub { font-size: 0.875rem; color: var(--muted); font-family: var(--font-mono); }
   .project-body { padding: 1.5rem 2.5rem 2rem; }
+  .project-metric { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 12px; color: var(--green); letter-spacing: 0.05em; margin-bottom: 1rem; }
 
   /* SCREENSHOT GALLERY */
   .gallery {
@@ -195,6 +196,14 @@
     padding: 0.2rem 0.55rem; background: rgba(10,10,15,0.85); color: var(--red); border: 1px solid rgba(255,60,60,0.3);
   }
 
+  /* SYSTEMS DISCLAIMER */
+  .systems-disclaimer {
+    font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted);
+    line-height: 1.8; max-width: 680px; margin: -1.5rem 0 2.5rem;
+    padding: 1rem 1.25rem; border-left: 2px solid var(--red); background: var(--surface2);
+  }
+  .systems-disclaimer strong { color: var(--text); }
+
   /* SKILLS */
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
   .skill-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.2s; }
@@ -262,6 +271,9 @@
     font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
     padding: 0.2rem 0.5rem; background: rgba(10,10,15,0.85); color: rgba(255,255,255,0.65); backdrop-filter: blur(4px);
   }
+  .ui-simple-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+  .ui-simple-item { border: 1px solid var(--border); background: var(--surface2); overflow: hidden; }
+  .ui-simple-item img { width: 100%; height: auto; display: block; object-fit: contain; }
 
   /* REVIEWS / VOUCHES */
   .reviews-grid { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -274,6 +286,7 @@
   .review-card-body { padding: 1.25rem 1.5rem 1.5rem; }
   .review-project { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
   .review-text { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+  .reviews-more { text-align: center; font-family: var(--font-mono); font-size: 0.85rem; color: var(--red); letter-spacing: 0.1em; margin-top: 0.5rem; }
 
   footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
 
@@ -303,7 +316,7 @@
 <body>
 
 <nav>
-  <div class="nav-logo">PRACHI.DEV</div>
+  <div class="nav-logo">PRACHI.SCRIPTER</div>
   <ul class="nav-links">
     <li><a href="#systems">Systems</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -320,20 +333,20 @@
   <div style="max-width:1100px; margin: 0 auto; width: 100%;">
     <div class="hero-tag">Roblox Game Developer · Luau · Multiplayer Systems</div>
     <h1 class="hero-name">PRACHI<br><span>S N</span></h1>
-    <p class="hero-title">Building worlds, one script at a time.</p>
-    <p class="hero-desc">End-to-end Roblox developer with hands-on experience in scalable Luau systems, client-server architecture, responsive UI, and live game deployment. I build games that players actually want to play.</p>
+    <p class="hero-title">Worked with top studios — DT Studios & Forestly Games — and somehow they keep asking me back.</p>
+    <p class="hero-desc">End-to-end Roblox developer with hands-on experience in scalable Luau systems, client-server architecture, responsive UI, and live game deployment. Contributed to 10M+ visits across published titles. I build games that players actually want to play.</p>
     <div class="hero-ctas">
 
       <a class="btn-outline" href="#contact">Get in Touch</a>
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-num">2<span class="accent">+</span></div>
-        <div class="stat-label">Published Game</div>
+        <div class="stat-num">6<span class="accent">+</span></div>
+        <div class="stat-label">Published Games</div>
       </div>
       <div>
-        <div class="stat-num">15<span class="accent">v15</span></div>
-        <div class="stat-label">Multiplayer</div>
+        <div class="stat-num">10M<span class="accent">+</span></div>
+        <div class="stat-label">Visits</div>
       </div>
       <div>
         <div class="stat-num">15<span class="accent">+</span></div>
@@ -352,6 +365,10 @@
 <section id="systems">
   <div class="section-label">/ 01 systems</div>
   <h2 class="section-title">Systems I've Engineered</h2>
+
+  <p class="systems-disclaimer">
+    <strong>Fair warning:</strong> this section is the "highlight reel," not the full reel — turns out a portfolio page has a scroll limit and my shipped work doesn't. Everything below survived the cut; everything else is living a happy, undocumented life in a Studio project somewhere.
+  </p>
 
   <div class="system-card">
     <div class="system-header">
@@ -547,40 +564,6 @@ end)</pre></div>
       </div>
   </div>
 
-  <!-- Stain Cleaner Job System -->
-  <div class="system-card">
-      <div class="system-header">
-          <div class="system-name">Stain Cleaner Job System</div>
-          <p class="system-desc">
-              Players inspect hotel rooms and remove stains from floors and furniture using interactive cleaning mechanics. Each completed task rewards players with cash while maintaining the hotel's cleanliness.
-          </p>
-      </div>
-
-      <div class="system-body">
-          <div class="video-frame">
-              <video controls autoplay muted loop playsinline preload="auto" src="Job 1.mp4"></video>
-              <div class="video-label">Job 1.mp4</div>
-          </div>
-      </div>
-  </div>
-
-  <!-- Pest Control Job System -->
-  <div class="system-card">
-      <div class="system-header">
-          <div class="system-name">Pest Control Job System</div>
-          <p class="system-desc">
-              Players locate and eliminate pests throughout the hotel while navigating guest rooms and service areas. The system encourages exploration and rewards quick, efficient completion.
-          </p>
-      </div>
-
-      <div class="system-body">
-          <div class="video-frame">
-              <video controls autoplay muted loop playsinline preload="auto" src="Job 2.mp4"></video>
-              <div class="video-label">Job 2.mp4</div>
-          </div>
-      </div>
-  </div>
-
   <!-- Swimming Pool Cleanup Job System -->
   <div class="system-card">
       <div class="system-header">
@@ -609,17 +592,18 @@ end)</pre></div>
   <div class="project-card">
     <div class="project-header">
       <div>
-        <div class="project-name">Plane Spotting Simulator </div>
-        <div class="project-sub">Luau · Roblox Studio · Exploration / Photography Sim</div>
+        <div class="project-name">Web Swing for Lucky Blocks</div>
+        <div class="project-sub">Luau · Roblox Studio · Web-Swinging / Traversal</div>
       </div>
       <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem;">
-        <a href="https://www.roblox.com/games/79033168696493/Planespotting-Simulator" target="_blank" rel="noopener noreferrer" class="project-badge">Live on Roblox</a>
+        <a href="https://www.roblox.com/games/86455914125987/Web-Swing-for-Lucky-Blocks" target="_blank" rel="noopener noreferrer" class="project-badge">Live on Roblox</a>
         <span class="project-year">2025</span>
       </div>
     </div>
     <div class="project-body">
+      <div class="project-metric">8.9M+ visits</div>
       <p style="font-size:0.9rem; color:var(--muted); margin-bottom:1.5rem; max-width:640px; line-height:1.75;">
-        Grab your camera and start spotting! Explore multiple unique airport locations and photograph a huge variety of different aircraft as you build out your collection.
+        Swing across the map collecting Lucky Blocks with a physics-driven web-swinging traversal system.
       </p>
     </div>
   </div>
@@ -636,6 +620,7 @@ end)</pre></div>
       </div>
     </div>
     <div class="project-body">
+      <div class="project-metric">9.3M+ visits</div>
       <p style="font-size:0.9rem; color:var(--muted); margin-bottom:1.5rem; max-width:640px; line-height:1.75;">
         Sort a pile of keycaps to complete your keyboard collection!
       </p>
@@ -660,22 +645,22 @@ end)</pre></div>
     </div>
   </div>
 
- <div class="project-card">
+  <div class="project-card">
     <div class="project-header">
       <div>
-        <div class="project-name"> Mad AFK Smash Gods </div>
-        <div class="project-sub">AFK themed game</div>
+        <div class="project-name">Plane Spotting Simulator </div>
+        <div class="project-sub">Luau · Roblox Studio · Exploration / Photography Sim</div>
       </div>
       <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem;">
-        <a href="https://www.roblox.com/games/103034638742466/MAD-AFK-Smash-Gods" target="_blank" rel="noopener noreferrer" class="project-badge">Live on Roblox</a>
-        <span class="project-year">2026</span>
+        <a href="https://www.roblox.com/games/79033168696493/Planespotting-Simulator" target="_blank" rel="noopener noreferrer" class="project-badge">Live on Roblox</a>
+        <span class="project-year">2025</span>
       </div>
     </div>
     <div class="project-body">
+      <div class="project-metric">2M+ views</div>
       <p style="font-size:0.9rem; color:var(--muted); margin-bottom:1.5rem; max-width:640px; line-height:1.75;">
-        An engaging AFK progression game where players automatically earn resources over time, unlock exciting collectible orbs, and continuously advance through a rewarding progression system. Players can merge orbs to create stronger, rarer versions, adding a satisfying layer of strategy and long-term progression. The game is designed to keep players engaged through incremental upgrades, rewarding milestones, and a sense of continuous growth.
+        Grab your camera and start spotting! Explore multiple unique airport locations and photograph a huge variety of different aircraft as you build out your collection.
       </p>
-
     </div>
   </div>
 </section>
@@ -688,43 +673,12 @@ end)</pre></div>
 
     <div class="gallery">
         <div class="gallery-item">
-            <img src="build 1.png" alt="Build 1">
-        </div>
-
-        <div class="gallery-item">
-            <img src="build 2.png" alt="Build 2">
-        </div>
-
-        <div class="gallery-item">
-            <img src="build 3.png" alt="Build 3">
-        </div>
-
-        <div class="gallery-item">
-            <img src="build 4.png" alt="Build 4">
-        </div>
-
-        <div class="gallery-item">
-            <img src="build 6.png" alt="Build 6">
-        </div>
-
-        <div class="gallery-item">
-            <img src="build 7.png" alt="Build 7">
-        </div>
-     
-        <div class="gallery-item">
             <img src="build 8.png" alt="Build 8">
         </div>
 
         <div class="gallery-item">
             <img src="build 9.png" alt="Build 9">
         </div>
-     
-        <div class="gallery-item wide">
-            <img src="chesss.png" alt="Chess Build">
-        </div>
-
-     
-     
     </div>
 </section>
  
@@ -734,42 +688,16 @@ end)</pre></div>
   <div class="section-label">/ 04 ui designs</div>
   <h2 class="section-title">Interface Design</h2>
 
-  <div class="ui-designs-grid">
-
-    <div class="ui-card">
-      <div class="ui-card-img">
-        <img src="Orbs.png" alt="Orbs UI" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
-        <span class="ui-platform-badge">Inventory UI</span>
-      </div>
-      <div class="ui-card-body">
-        <div class="ui-card-name">Orbs — Inventory Interface</div>
-        <div class="ui-card-desc">Orb collection and management UI displaying player-owned orbs with tier indicators, merge readiness states, and quantity counters. Designed for quick scanning and interaction across large inventories.</div>
-        <div class="ui-feature-pills">
-          <span class="ui-pill">Inventory Grid</span>
-          <span class="ui-pill">Tier Display</span>
-          <span class="ui-pill">Merge System UI</span>
-          <span class="ui-pill">Roblox ScreenGui</span>
-        </div>
-      </div>
+  <div class="ui-simple-grid">
+    <div class="ui-simple-item">
+      <img src="UI 1.png" alt="UI 1" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
     </div>
-
-    <div class="ui-card">
-      <div class="ui-card-img">
-        <img src="Orb hatcher.png" alt="Orb Hatcher UI" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
-        <span class="ui-platform-badge">Progression UI</span>
-      </div>
-      <div class="ui-card-body">
-        <div class="ui-card-name">Orb Hatcher — Progression Interface</div>
-        <div class="ui-card-desc">Gacha-style hatch interface for acquiring new orbs. Features animated reveal sequences, rarity callouts, and hatch cost display — designed to make each pull feel rewarding and legible at a glance.</div>
-        <div class="ui-feature-pills">
-          <span class="ui-pill">Hatch Animation</span>
-          <span class="ui-pill">Rarity Display</span>
-          <span class="ui-pill">Gacha Flow</span>
-          <span class="ui-pill">Roblox ScreenGui</span>
-        </div>
-      </div>
+    <div class="ui-simple-item">
+      <img src="UI 2.png" alt="UI 2" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
     </div>
-
+    <div class="ui-simple-item">
+      <img src="UI 3.png" alt="UI 3" onerror="this.parentElement.style.background='#1a1a26'; this.style.display='none'">
+    </div>
   </div>
 </section>
 
@@ -829,6 +757,7 @@ end)</pre></div>
     </div>
 
   </div>
+  <div class="reviews-more">... and more!</div>
 </section>
 
 <hr class="section-divider">
